@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="public/assets/favicon-32x32.png">
+
+    <title>Frontend Mentor | GitHub user search app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/style/styles.css">
+</head>
+<body data-theme="dark">
+<div class="container">
+    <div class="logo">
+        <h1>
+            devfinder
+        </h1>
+        <button class="theme-switcher">
+            <span class="theme-text">Light</span>
+            <img src="public/assets/icon-sun.svg"
+                 alt="">
+        </button>
+    </div>
+
+    <form action="#"
+          id="search-form">
+        <div class="form-input">
+            <img src="public/assets/icon-search.svg" alt="">
+            <input type="text"
+                   name="username"
+                   id="username"
+                   placeholder="Search GitHub username...">
+            <span class="error-message">No results</span>
+            <button class="search-buton">Search</button>
+        </div>
+    </form>
+
+    <div class="card">
+        <img class="desktop-image" src="https://i.pravatar.cc/117" width="117" height="117" alt="">
+        <div>
+            <div class="header">
+                <img width="70" height="70" src="https://i.pravatar.cc/70" alt="Profile image">
+                <div class="user-info">
+                    <div class="user-name">
+                        <h1>The Octacat</h1>
+                        <a href="#" class="handler">@octacat</a>
+                    </div>
+                    <div class="joined">
+                        Joined 25 Jan 2011
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <p class="bio">
+                    Lorem ipsum dolor sit amet,
+                    consectetuer adipiscing elit.
+                    Donec odio.
+                    Quisque volutpat mattis eros.
+                </p>
+                <div class="stats">
+                    <div class="stat">
+                        <h4>Repos</h4>
+                        <h4 class="repo-number">8</h4>
+                    </div>
+                    <div class="stat">
+                        <h4>Followers</h4>
+                        <h4 class="followers-number">3938</h4>
+                    </div>
+                    <div class="stat">
+                        <h4>Following</h4>
+                        <h4 class="following-number">9</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <ul>
+                    <li><img src="public/assets/icon-location.svg" alt="pin marker">San francisco</li>
+                    <li><img src="public/assets/icon-website.svg" alt="chain link"><a href="#">https://github.blog</a></li>
+                    <li><img src="public/assets/icon-twitter.svg" alt="twitter logo"><a href="#">Not Available</a></li>
+                    <li><img src="public/assets/icon-company.svg" alt="building icon"><a href="#">@github</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    window.addEventListener('load', function () {
+        themeSwitcherInit();
+    });
+
+    function themeSwitcherInit() {
+        document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
+    }
+
+    function toggleTheme() {
+        const body = document.querySelector('body');
+        const themeSwitcherTxt = document.querySelector('.theme-switcher span');
+        const themeSwitcherImg = document.querySelector('.theme-switcher img');
+        const themes = {
+            light: {
+                code: 'dark',
+                name: 'Light',
+                icon: 'public/assets/icon-sun.svg',
+            },
+            dark: {
+                code: 'light',
+                name: 'Dark',
+                icon: 'public/assets/icon-moon.svg',
+            }
+        }
+        let theme = themes[body.dataset.theme];
+        body.dataset.theme = theme.code.toLowerCase();
+        themeSwitcherTxt.innerHTML = theme.name;
+        themeSwitcherImg.src = theme.icon;
+    }
+
+</script>
+</html>
