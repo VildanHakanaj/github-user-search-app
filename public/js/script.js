@@ -1,9 +1,12 @@
 "use strict"
 
+
 function select(selector, all = false){
     let method = ! all ? 'querySelector' : 'querySelectorAll';
     return document[method](selector);
 }
+
+searchUsername('octocat');
 
 window.addEventListener('load', function () {
     document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
