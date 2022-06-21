@@ -1,6 +1,5 @@
 "use strict"
 
-
 function select(selector, all = false){
     let method = ! all ? 'querySelector' : 'querySelectorAll';
     return document[method](selector);
@@ -8,27 +7,27 @@ function select(selector, all = false){
 
 searchUsername('octocat');
 
-window.addEventListener('load', function () {
-    document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
+setThemeFromLocal();
 
-    const searchBtn = select('.search-button');
-    const usernameField = select('#username');
-    const errorMessage = select('.error-message');
-    searchBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
 
-        errorMessage.classList.add('hidden');
+const searchBtn = select('.search-button');
+const usernameField = select('#username');
+const errorMessage = select('.error-message');
+searchBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    errorMessage.classList.add('hidden');
 
 
-        const username = usernameField.value;
+    const username = usernameField.value;
 
-        if(username.trim().length === 0){
-            return;
-        }
+    if(username.trim().length === 0){
+        return;
+    }
 
-        searchUsername(username);
+    await searchUsername(username);
 
-    });
 });
 
 async function searchUsername(username){
@@ -94,8 +93,6 @@ function updateSocials(data) {
 }
 
 function updateUi(data){
-    console.log({data});
-
     //Update the image
     const imgEl = [...select('.card .profile-image', true)];
     imgEl.forEach((image) => image.src = data.avatar_url);
@@ -129,11 +126,18 @@ function toggleErrorMessage(){
 
 
 
+function setThemeFromLocal(){
+    let theme = JSON.parse(localStorage.getItem('theme'));
+
+    if(! theme){
+        return;
+    }
+
+    updateTheme(theme);
+}
 
 function toggleTheme() {
-    const body = document.querySelector('body');
-    const themeSwitcherTxt = document.querySelector('.theme-switcher span');
-    const themeSwitcherImg = document.querySelector('.theme-switcher img');
+
     const themes = {
         light: {
             code: 'dark',
@@ -146,7 +150,18 @@ function toggleTheme() {
             icon: 'public/assets/icon-moon.svg',
         }
     }
+    const body = document.querySelector('body');
+
     let theme = themes[body.dataset.theme];
+
+    localStorage.setItem('theme', JSON.stringify(theme));
+    updateTheme(theme);
+}
+
+function updateTheme(theme){
+    const body = document.querySelector('body');
+    const themeSwitcherTxt = document.querySelector('.theme-switcher span');
+    const themeSwitcherImg = document.querySelector('.theme-switcher img');
     body.dataset.theme = theme.code.toLowerCase();
     themeSwitcherTxt.innerHTML = theme.name;
     themeSwitcherImg.src = theme.icon;
