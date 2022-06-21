@@ -75,9 +75,17 @@ h4{
     font-size: 13px;
     line-height: 20px;
 }
-
+html{
+    width: 100%;
+    height: 100%;
+}
 body{
     background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .desktop-image{
