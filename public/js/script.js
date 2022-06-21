@@ -80,12 +80,13 @@ function updateSocials(data) {
     locationEl.innerText = data.location ?? 'Not available';
 
     const websiteEl = select('.website');
-    let blog = ! data.blog?.trim() ? 'Not available' : data.blog;
-    websiteEl.href = blog;
+    websiteEl.href = !data.blog?.trim() ? 'Not available' : data.blog;
     websiteEl.innerText = 'Website';
 
     const twitterEl = select('.twitter');
-    twitterEl.innerText = data.twitter_username ?? 'Not available';
+    let twitterhandler = data.twitter_username ?? 'Not available'
+    twitterEl.href = twitterhandler !== 'Not available' ? "https://twitter.com/" + twitterhandler : '#'
+    twitterEl.innerText = twitterhandler;
 
     const companyEl = select('.company');
     companyEl.innerText = data.company ?? 'Not available';
