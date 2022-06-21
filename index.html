@@ -33,16 +33,22 @@
                    name="username"
                    id="username"
                    placeholder="Search GitHub username...">
-            <span class="error-message">No results</span>
-            <button class="search-buton">Search</button>
+            <span class="error-message hidden">No results</span>
+            <button class="search-button">Search</button>
         </div>
     </form>
 
     <div class="card">
-        <img class="desktop-image" src="https://i.pravatar.cc/117" width="117" height="117" alt="">
+        <div>
+            <img class="desktop-image profile-image" src="public/assets/" width="117" height="117" alt="">
+        </div>
         <div>
             <div class="header">
-                <img width="70" height="70" src="https://i.pravatar.cc/70" alt="Profile image">
+                <img class="profile-image"
+                     width="70"
+                     height="70"
+                     src="https://i.pravatar.cc/70"
+                     alt="Profile image">
                 <div class="user-info">
                     <div class="user-name">
                         <h1>The Octacat</h1>
@@ -77,47 +83,17 @@
             </div>
             <div class="footer">
                 <ul>
-                    <li><img src="public/assets/icon-location.svg" alt="pin marker">San francisco</li>
-                    <li><img src="public/assets/icon-website.svg" alt="chain link"><a href="#">https://github.blog</a></li>
-                    <li><img src="public/assets/icon-twitter.svg" alt="twitter logo"><a href="#">Not Available</a></li>
-                    <li><img src="public/assets/icon-company.svg" alt="building icon"><a href="#">@github</a></li>
+                    <li><img src="public/assets/icon-location.svg" alt="pin marker"><span class="location">San francisco</span></li>
+                    <li><img src="public/assets/icon-website.svg" alt="chain link"><a class="website" href="#">https://github.blog</a></li>
+                    <li><img src="public/assets/icon-twitter.svg" alt="twitter logo"><a class="twitter" href="#">Not Available</a></li>
+                    <li><img src="public/assets/icon-company.svg" alt="building icon"><a class="company" href="#">@github</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
-</body>
-<script>
-    window.addEventListener('load', function () {
-        themeSwitcherInit();
-    });
-
-    function themeSwitcherInit() {
-        document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
-    }
-
-    function toggleTheme() {
-        const body = document.querySelector('body');
-        const themeSwitcherTxt = document.querySelector('.theme-switcher span');
-        const themeSwitcherImg = document.querySelector('.theme-switcher img');
-        const themes = {
-            light: {
-                code: 'dark',
-                name: 'Light',
-                icon: 'public/assets/icon-sun.svg',
-            },
-            dark: {
-                code: 'light',
-                name: 'Dark',
-                icon: 'public/assets/icon-moon.svg',
-            }
-        }
-        let theme = themes[body.dataset.theme];
-        body.dataset.theme = theme.code.toLowerCase();
-        themeSwitcherTxt.innerHTML = theme.name;
-        themeSwitcherImg.src = theme.icon;
-    }
+<script src="public/js/script.js">
 
 </script>
+</body>
 </html>
